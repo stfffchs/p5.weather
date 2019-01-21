@@ -17,6 +17,9 @@ var Olaf partlycloudy;
 
 function preload() {
     Olaf_default = loadImage('images/Olaf_default.png');
+    Olaf_sonnig = loadImage('images/Olaf_sonnig.png');
+    Olaf_partlycloudy = loadImage('images/Olaf_partlycloudy.png');
+
 
 }
 
