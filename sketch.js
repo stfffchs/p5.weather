@@ -1,4 +1,4 @@
-//Variablen
+// ------------------------------------------------------ Variablen
 let city;
 let temp;
 let input, button;
@@ -7,7 +7,10 @@ let condition;
 
 var Olaf_default;
 var Olaf_sonnig;
-var Olaf_partlycloudy;
+var Olaf_wind;
+var Olaf_rain;
+
+
 var Temp_0;
 var Temp_1;
 var Temp_2;
@@ -18,9 +21,10 @@ var Temp_3;
 
 function preload() {
     Olaf_default = loadImage('images/Olaf_default.png');
-    //Olaf_sonnig = loadImage('images/Olaf_sonnig.png');
-    //Olaf_partlycloudy = loadImage('images/Olaf_partlycloudy.png');
-    //Olaf_rain = loadImage('images/Olaf_rain.png');
+    Olaf_sonnig = loadImage('images/Olaf_sonnig.png');
+    Olaf_rain = loadImage('images/Olaf_rain.png');
+    Olaf_wind = loadImage('images/Olaf_wind.png');
+
 
     Temp_3 = loadImage('images/Temp_3.png');
     Temp_2 = loadImage('images/Temp_2.png');
@@ -68,29 +72,28 @@ function draw() {
 
 // ------------------------------------------------------ Draw Current Temperature
 
-    if (temp <= 20) {
+
+    if (temp >= 20) {
         image(Temp_3, x, y, 375, 809);
 
     }
 
-    /*     if (temp >= 15 && x <= 19)
-        )
-        {
-            image(Temp_2, x, y, 375, 809);
 
-        }
+    if (temp >= 15 && x <= 19) {
+        image(Temp_2, x, y, 375, 809)
+    }
 
-       if (temp >= 5 && x <= 14)
-        )
-        {
-            image(Temp_1, x, y, 375, 809);
 
-        }
+    if (temp >= 5 && x <= 14) {
+        image(Temp_1, x, y, 375, 809);
 
-        if (temp >= 4) {
-            image(Temp_0, x, y, 375, 809);
+    }
 
-        }*/
+
+    if (temp <= 4) {
+        image(Temp_0, x, y, 375, 809);
+
+    }
 
 
 }
@@ -112,7 +115,6 @@ function gotWeather(weather) {
     time = weather.location.localtime;
     condition = weather.current.condition.text;
     temp = weather.current.temp_c;
-
 
 
 }
