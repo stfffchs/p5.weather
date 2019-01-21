@@ -1,10 +1,6 @@
 //Variablen
-let sunrise;
-let sunset;
 let city;
-let currtemp;
-let cloud;
-let time;
+let temp;
 let input, button;
 let key = '3762f14b22f9477084191958191101';
 let condition;
@@ -12,14 +8,24 @@ let condition;
 var Olaf_default;
 var Olaf_sonnig;
 var Olaf_partlycloudy;
+var Temp_0;
+var Temp_1;
+var Temp_2;
+var Temp_3;
 
 
 // ------------------------------------------------------ Preload Images
 
 function preload() {
     Olaf_default = loadImage('images/Olaf_default.png');
-    Olaf_sonnig = loadImage('images/Olaf_sonnig.png');
-    Olaf_partlycloudy = loadImage('images/Olaf_partlycloudy.png');
+    //Olaf_sonnig = loadImage('images/Olaf_sonnig.png');
+    //Olaf_partlycloudy = loadImage('images/Olaf_partlycloudy.png');
+    //Olaf_rain = loadImage('images/Olaf_rain.png');
+
+    Temp_3 = loadImage('images/Temp_3.png');
+    Temp_2 = loadImage('images/Temp_2.png');
+    Temp_1 = loadImage('images/Temp_1.png');
+    Temp_0 = loadImage('images/Temp_0.png');
 
 
 }
@@ -58,27 +64,33 @@ function draw() {
     var x = (windowWidth - Olaf_default.width) / 2;
     var y = (windowHeight - Olaf_default.height) / 2;
 
-    image(Olaf_default, x, y, 100, 396);
+    image(Olaf_default, x, y, 375, 809);
 
-// ------------------------------------------------------ Draw Single Assets
+// ------------------------------------------------------ Draw Current Temperature
 
-    if (condition == "sonnig") {
-        image(Olaf_sonnig, x, y, 100, 396);
+    if (temp <= 20) {
+        image(Temp_3, x, y, 375, 809);
+
     }
 
-    if (condition == "Partly cloudy") {
+    /*     if (temp >= 15 && x <= 19)
+        )
+        {
+            image(Temp_2, x, y, 375, 809);
 
-        image(Olaf_partlycloudy, x, y, 100, 396);
-    }
+        }
 
+       if (temp >= 5 && x <= 14)
+        )
+        {
+            image(Temp_1, x, y, 375, 809);
 
+        }
 
-    /*
-        text("Ort: " + city, 100, 70);
-        text("Aktuelle Temperatur: " + currtemp, 100, 100);
-        text("Sonnenaufgang ist um " + sunrise, 100, 130);
-        text("Sonnenuntergang ist um " + sunset, 100, 160);
-    */
+        if (temp >= 4) {
+            image(Temp_0, x, y, 375, 809);
+
+        }*/
 
 
 }
@@ -99,14 +111,9 @@ function gotWeather(weather) {
     city = weather.location.name;
     time = weather.location.localtime;
     condition = weather.current.condition.text;
-    //console.log(condition);
+    temp = weather.current.temp_c;
 
-    currtemp = weather.current.temp_c;
-    cloud = weather.current.cloud;
-    sunrise = weather.forecast.forecastday[0].astro.sunrise;
-    sunset = weather.forecast.forecastday[0].astro.sunset;
 
-    console.log(time);
 
 }
 
