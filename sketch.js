@@ -7,10 +7,11 @@ let cloud;
 let time;
 let input, button;
 let key = '3762f14b22f9477084191958191101';
+let condition;
 
 var Olaf_default;
 var Olaf_sonnig;
-var Olaf partlycloudy;
+var Olaf_partlycloudy;
 
 
 // ------------------------------------------------------ Preload Images
@@ -61,22 +62,23 @@ function draw() {
 
 // ------------------------------------------------------ Draw Single Assets
 
-    if (condition == sonnig) {
+    if (condition == "sonnig") {
         image(Olaf_sonnig, x, y, 100, 396);
     }
 
-    if (condition == partlycloudy) {
+    if (condition == "Partly cloudy") {
+
         image(Olaf_partlycloudy, x, y, 100, 396);
     }
 
 
 
-/*
-    text("Ort: " + city, 100, 70);
-    text("Aktuelle Temperatur: " + currtemp, 100, 100);
-    text("Sonnenaufgang ist um " + sunrise, 100, 130);
-    text("Sonnenuntergang ist um " + sunset, 100, 160);
-*/
+    /*
+        text("Ort: " + city, 100, 70);
+        text("Aktuelle Temperatur: " + currtemp, 100, 100);
+        text("Sonnenaufgang ist um " + sunrise, 100, 130);
+        text("Sonnenuntergang ist um " + sunset, 100, 160);
+    */
 
 
 }
@@ -96,7 +98,8 @@ function reloadJson() {
 function gotWeather(weather) {
     city = weather.location.name;
     time = weather.location.localtime;
-    condition = weather.current.condition;
+    condition = weather.current.condition.text;
+    //console.log(condition);
 
     currtemp = weather.current.temp_c;
     cloud = weather.current.cloud;
