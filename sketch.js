@@ -45,10 +45,10 @@ function setup() {
     let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=Zürich&days=1';
 
     input = createInput();
-    input.position(15, 620);
+    input.position((width/2)-175, 560);
 
     button = createButton('OK');
-    button.position(input.x + input.width + 10, 620);
+    button.position((width/2)-175, 630);
     button.mousePressed(reloadJson);
 
     loadJSON(url, gotWeather);
@@ -68,32 +68,41 @@ function draw() {
     var x = (windowWidth - Olaf_default.width) / 2;
     var y = (windowHeight - Olaf_default.height) / 2;
 
-    image(Olaf_default, x, y, 375, 809);
+    image(Olaf_default, x, y, 300, 647);
 
 // ------------------------------------------------------ Draw Current Temperature
 
 
     if (temp >= 20) {
-        image(Temp_3, x, y, 375, 809);
+        image(Temp_3, x, y, 300, 647);
 
     }
 
-
-    if (temp >= 15 && x <= 19) {
-        image(Temp_2, x, y, 375, 809)
+    if (temp >= 15 && temp <= 19) {
+        image(Temp_2, x, y, 300, 647)
     }
 
-
-    if (temp >= 5 && x <= 14) {
-        image(Temp_1, x, y, 375, 809);
+    if (temp >= 5 && temp <= 14) {
+        image(Temp_1, x, y, 300, 647);
 
     }
 
 
     if (temp <= 4) {
-        image(Temp_0, x, y, 375, 809);
+        image(Temp_0, x, y, 300, 647);
 
     }
+
+    // ------------------------------------------------------ Draw Current Condition   >>>>>>>>>>>>>>>> FEHLER !!!!!!
+
+/*    if (condition === "Sunny") {
+        image(Olaf_sonnig, x, y, 375, 809);
+
+    }
+
+
+    text(city, width/2,700);*/
+
 
 
 }

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Coming+Soon');
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Coming Soon', cursive;
+}
+
+canvas {
+    margin: auto;
+    z-index: 1000;
+
+}
+
+input {
+    font-family: 'Coming Soon', cursive;
+    height: 60px;
+    width: 260px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 2rem;
+    color: #333333;
+    padding-left: 10px;
+    z-index: 1500;
+}
+
+button {
+    font-family: 'Coming Soon', cursive;
+    height: 40px;
+    width: 270px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: darkgreen;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    position: absolute;
+    top: 50%;
+    z-index: 2000;
+}
+
+.wrapper {
+
+}
