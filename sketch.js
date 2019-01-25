@@ -69,7 +69,7 @@ function setup() {
 
     let inputField = document.getElementById("inputId");
 
-    button = createButton('OK');
+    button = createButton('Ask Olaf!');
     button.position(47, 620);
     button.mousePressed(reloadJson);
 
@@ -122,7 +122,7 @@ function draw() {
 
 
     showTempC();
-    askOlaf();
+    //askOlaf();
 
     if (temp >= 20) {
         image(Temp_3, x, y, 300, 647);
@@ -200,16 +200,16 @@ function draw() {
 function showTempC() {
 
     textSize(30);
-    text(temp + " °C", 240, 80);
+    text(temp + " °C", 150, 80);
 
 }
-
+/*
 function askOlaf() {
 
     textSize(30);
     text("Ask Olaf!", 40, 80);
 
-}
+}*/
 
 
 
