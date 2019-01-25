@@ -174,6 +174,11 @@ function draw() {
         //console.log("bild");
     }
 
+    if (condition == "Patchy heavy snow") {
+        image(Olaf_rain, x, y, 300, 647);
+        //console.log("bild");
+    }
+
     if (condition == "Light snow") {
         image(Olaf_snow, x, y, 300, 647);
         //console.log("bild");
