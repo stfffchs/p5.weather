@@ -1,9 +1,9 @@
 // ------------------------------------------------------ Variablen
-let city;
+let city = "";
 let temp;
 let input, button;
 let key = '3762f14b22f9477084191958191101';
-let condition;
+let condition = "";
 
 var Olaf_default;
 var Olaf_sonnig;
@@ -38,35 +38,35 @@ function preload() {
 
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(375, 809);
     background(0, 255, 0, 50);
 
 
     let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=Zürich&days=1';
 
     input = createInput();
-    input.position((width/2)-175, 560);
+    input.position(47, 560);
 
     button = createButton('OK');
-    button.position((width/2)-175, 630);
+    button.position(47, 620);
     button.mousePressed(reloadJson);
 
     loadJSON(url, gotWeather);
 }
 
-// ------------------------------------------------------ Responsive
+/*// ------------------------------------------------------ Responsive
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-}
+}*/
 
 // ------------------------------------------------------ Draw
 
 
 function draw() {
 
-    var x = (windowWidth - Olaf_default.width) / 2;
-    var y = (windowHeight - Olaf_default.height) / 2;
+    var x = (30);
+    var y = (30);
 
     image(Olaf_default, x, y, 300, 647);
 
@@ -82,28 +82,36 @@ function draw() {
         image(Temp_2, x, y, 300, 647)
     }
 
-    if (temp >= 5 && temp <= 14) {
+    if (temp >= -3 && temp <= 14) {
         image(Temp_1, x, y, 300, 647);
 
     }
 
 
-    if (temp <= 4) {
+    if (temp <= -4) {
         image(Temp_0, x, y, 300, 647);
 
     }
 
+    showTempC();
+
+
     // ------------------------------------------------------ Draw Current Condition   >>>>>>>>>>>>>>>> FEHLER !!!!!!
 
-/*    if (condition === "Sunny") {
-        image(Olaf_sonnig, x, y, 375, 809);
-
+    //console.log(condition);
+    if (condition == "Partly cloudy") {
+        image(Olaf_sonnig, x, y, 300, 647);
+        console.log("bild");
     }
 
 
-    text(city, width/2,700);*/
+}
 
 
+function showTempC() {
+
+    textSize(30);
+    text(city + " " + temp + " °C", 140, 60);
 
 }
 
@@ -120,11 +128,14 @@ function reloadJson() {
 
 
 function gotWeather(weather) {
+    //console.log(weather);
     city = weather.location.name;
-    time = weather.location.localtime;
     condition = weather.current.condition.text;
+    //console.log(condition);
     temp = weather.current.temp_c;
-
+    weatherdays = weather.forecast.forecastday;
+    rain = weather.forecast.forecastday;
+    wind = weather.forecast.forecastday;
 
 }
 
