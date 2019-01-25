@@ -15,6 +15,8 @@ var Olaf_rain;
 
 
 var Temp_0;
+var Temp_0b;
+
 var Temp_1;
 var Temp_2;
 var Temp_3;
@@ -39,7 +41,9 @@ function preload() {
     Temp_3 = loadImage('images/Temp_3.png');
     Temp_2 = loadImage('images/Temp_2.png');
     Temp_1 = loadImage('images/Temp_1.png');
+    Temp_0b = loadImage('images/Temp_0b.png');
     Temp_0 = loadImage('images/Temp_0.png');
+
 
     Day = loadImage('images/Day.png');
     Nite = loadImage('images/Night.png');
@@ -126,8 +130,13 @@ function draw() {
         image(Temp_2, x, y, 300, 647)
     }
 
-    if (temp >= -3 && temp <= 13) {
+    if (temp >= 6 && temp <= 13) {
         image(Temp_1, x, y, 300, 647);
+
+    }
+
+    if (temp >= -3 && temp <= 5) {
+        image(Temp_0b, x, y, 300, 647);
 
     }
 
