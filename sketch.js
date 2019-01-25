@@ -18,6 +18,8 @@ var Temp_1;
 var Temp_2;
 var Temp_3;
 
+var myFont;
+
 
 // ------------------------------------------------------ Preload Images
 
@@ -27,12 +29,15 @@ function preload() {
     Olaf_rain = loadImage('images/Olaf_rain.png');
     Olaf_wind = loadImage('images/Olaf_wind.png');
     Olaf_partlycloudy = loadImage('images/Olaf_partlycloudy.png');
+    Olaf_snow = loadImage('images/Olaf_snow.png');
 
 
     Temp_3 = loadImage('images/Temp_3.png');
     Temp_2 = loadImage('images/Temp_2.png');
     Temp_1 = loadImage('images/Temp_1.png');
     Temp_0 = loadImage('images/Temp_0.png');
+
+    myFont = loadFont('images/Saira-Light.otf');
 
 
 }
@@ -84,6 +89,7 @@ function setup() {
 
 function draw() {
 
+
     var x = (30);
     var y = (30);
 
@@ -97,15 +103,14 @@ function draw() {
 
     }
 
-    if (temp >= 11 && temp <= 19) {
+    if (temp >= 14 && temp <= 19) {
         image(Temp_2, x, y, 300, 647)
     }
 
-    if (temp >= -3 && temp <= 10) {
+    if (temp >= -3 && temp <= 13) {
         image(Temp_1, x, y, 300, 647);
 
     }
-
 
     if (temp <= -4) {
         image(Temp_0, x, y, 300, 647);
@@ -137,12 +142,25 @@ function draw() {
         //console.log("bild");
     }
 
+    if (condition == "Light snow") {
+        image(Olaf_snow, x, y, 300, 647);
+        //console.log("bild");
+    }
+
+    if (condition == "Patchy light snow") {
+        image(Olaf_snow, x, y, 300, 647);
+        //console.log("bild");
+    }
+
     // ------------------------------------------------------ Draw Current Wind
 
     if (wind_kph >= 20) {
         image(Olaf_wind, x, y, 300, 647);
         console.log("wind");
     }
+
+    textFont(myFont);
+
 
 
 }
