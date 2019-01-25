@@ -121,6 +121,9 @@ function draw() {
 // ------------------------------------------------------ Draw Current Temperature
 
 
+    showTempC();
+    askOlaf();
+
     if (temp >= 20) {
         image(Temp_3, x, y, 300, 647);
 
@@ -145,7 +148,8 @@ function draw() {
 
     }
 
-    showTempC();
+
+
 
 
     // ------------------------------------------------------ Draw Current Condition
@@ -196,7 +200,14 @@ function draw() {
 function showTempC() {
 
     textSize(30);
-    text(temp + " °C", 140, 60);
+    text(temp + " °C", 240, 80);
+
+}
+
+function askOlaf() {
+
+    textSize(30);
+    text("Ask Olaf!", 40, 80);
 
 }
 
