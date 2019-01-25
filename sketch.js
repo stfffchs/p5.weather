@@ -4,6 +4,7 @@ let temp;
 let input, button;
 let key = '3762f14b22f9477084191958191101';
 let condition = "";
+let wind_kph;
 
 var Olaf_default;
 var Olaf_sonnig;
@@ -24,6 +25,7 @@ function preload() {
     Olaf_sonnig = loadImage('images/Olaf_sonnig.png');
     Olaf_rain = loadImage('images/Olaf_rain.png');
     Olaf_wind = loadImage('images/Olaf_wind.png');
+    Olaf_partlycloudy = loadImage('images/Olaf_partlycloudy.png');
 
 
     Temp_3 = loadImage('images/Temp_3.png');
@@ -78,11 +80,11 @@ function draw() {
 
     }
 
-    if (temp >= 15 && temp <= 19) {
+    if (temp >= 11 && temp <= 19) {
         image(Temp_2, x, y, 300, 647)
     }
 
-    if (temp >= -3 && temp <= 14) {
+    if (temp >= -3 && temp <= 10) {
         image(Temp_1, x, y, 300, 647);
 
     }
@@ -96,12 +98,33 @@ function draw() {
     showTempC();
 
 
-    // ------------------------------------------------------ Draw Current Condition   >>>>>>>>>>>>>>>> FEHLER !!!!!!
+    // ------------------------------------------------------ Draw Current Condition
 
     //console.log(condition);
     if (condition == "Partly cloudy") {
+        image(Olaf_partlycloudy, x, y, 300, 647);
+        //console.log("bild");
+    }
+
+    if (condition == "Sunny") {
         image(Olaf_sonnig, x, y, 300, 647);
-        console.log("bild");
+        //console.log("bild");
+    }
+    if (condition == "Moderate or heavy rain shower") {
+        image(Olaf_rain, x, y, 300, 647);
+        //console.log("bild");
+    }
+
+    if (condition == "Rain") {
+        image(Olaf_rain, x, y, 300, 647);
+        //console.log("bild");
+    }
+
+    // ------------------------------------------------------ Draw Current Wind
+
+    if (wind_kph >= 20) {
+        image(Olaf_wind, x, y, 300, 647);
+        console.log("wind");
     }
 
 
@@ -111,7 +134,7 @@ function draw() {
 function showTempC() {
 
     textSize(30);
-    text(city + " " + temp + " °C", 140, 60);
+    text(temp + " °C", 140, 60);
 
 }
 
@@ -131,11 +154,10 @@ function gotWeather(weather) {
     //console.log(weather);
     city = weather.location.name;
     condition = weather.current.condition.text;
-    //console.log(condition);
     temp = weather.current.temp_c;
     weatherdays = weather.forecast.forecastday;
     rain = weather.forecast.forecastday;
-    wind = weather.forecast.forecastday;
+    wind_kph = weather.current.wind_kph;
 
 }
 
