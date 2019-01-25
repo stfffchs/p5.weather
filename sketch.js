@@ -6,6 +6,7 @@ let button;
 let key = '3762f14b22f9477084191958191101';
 let condition = "";
 let wind_kph;
+let daynite;
 
 var Olaf_default;
 var Olaf_sonnig;
@@ -19,6 +20,9 @@ var Temp_2;
 var Temp_3;
 
 var myFont;
+
+let Day;
+let Nite;
 
 
 // ------------------------------------------------------ Preload Images
@@ -37,6 +41,9 @@ function preload() {
     Temp_1 = loadImage('images/Temp_1.png');
     Temp_0 = loadImage('images/Temp_0.png');
 
+    Day = loadImage('images/Day.png');
+    Nite = loadImage('images/Night.png');
+
     myFont = loadFont('images/Saira-Light.otf');
 
 
@@ -46,7 +53,7 @@ function preload() {
 
 
 function setup() {
-    createCanvas(375, 809);
+    createCanvas(windowWidth, windowHeight);
     background(0, 255, 0, 50);
 
 
@@ -77,23 +84,35 @@ function setup() {
         }
     });
 
+    frameRate(30);
 
-    /*// ------------------------------------------------------ Responsive
-
-    function windowResized() {
-        resizeCanvas(windowWidth, windowHeight);
-    }*/
-
-// ------------------------------------------------------ Draw
 }
 
-function draw() {
+// ------------------------------------------------------ Draw
 
+
+function draw() {
+    clear();
+   // text("Wie gsehts hüt so us?", 360, 60);
+    background(0, 255, 0, 50);
 
     var x = (30);
     var y = (30);
 
+
+
+    if (daynite == 1) {
+        image(Day, x, y, 300, 647);
+
+    }
+
+    if (daynite == 0) {
+        image(Nite, x, y, 300, 647);
+
+    }
+
     image(Olaf_default, x, y, 300, 647);
+
 
 // ------------------------------------------------------ Draw Current Temperature
 
@@ -162,7 +181,6 @@ function draw() {
     textFont(myFont);
 
 
-
 }
 
 
@@ -172,6 +190,8 @@ function showTempC() {
     text(temp + " °C", 140, 60);
 
 }
+
+
 
 // ------------------------------------------------------ Reload JSON
 
@@ -188,12 +208,12 @@ function reloadJson() {
 function gotWeather(weather) {
     //console.log(weather);
     city = weather.location.name;
+    localtime = weather.location.localtime;
     condition = weather.current.condition.text;
     temp = weather.current.temp_c;
+    daynite = weather.current.is_day;
     weatherdays = weather.forecast.forecastday;
     rain = weather.forecast.forecastday;
     wind_kph = weather.current.wind_kph;
 
 }
-
-
