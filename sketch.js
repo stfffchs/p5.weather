@@ -1,7 +1,8 @@
 // ------------------------------------------------------ Variablen
 let city = "";
 let temp;
-let input, button;
+var input;
+let button;
 let key = '3762f14b22f9477084191958191101';
 let condition = "";
 let wind_kph;
@@ -48,22 +49,38 @@ function setup() {
 
     input = createInput();
     input.position(47, 560);
+    input.id('inputId');
+
+    let inputField = document.getElementById("inputId");
 
     button = createButton('OK');
     button.position(47, 620);
     button.mousePressed(reloadJson);
 
     loadJSON(url, gotWeather);
-}
 
-/*// ------------------------------------------------------ Responsive
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-}*/
+// ------------------------------------------------------ Function Click on Enter
+
+
+    inputField.addEventListener("keyup", function (event) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            reloadJson();
+        }
+    });
+
+
+    /*// ------------------------------------------------------ Responsive
+
+    function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+    }*/
 
 // ------------------------------------------------------ Draw
-
+}
 
 function draw() {
 
