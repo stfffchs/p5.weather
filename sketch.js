@@ -4,6 +4,7 @@ let temp;
 var input;
 let button;
 let key = '3762f14b22f9477084191958191101';
+//Neue API f5292699190e2f09abed2a814846ceb3
 let condition = "";
 let wind_kph;
 let daynite;
@@ -62,6 +63,8 @@ function setup() {
 
 
     let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=Zürich&days=1';
+    //Neue API    let url = 'http://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb&query=NewYork';
+
 
     input = createInput();
     input.position(47, 560);
@@ -76,10 +79,10 @@ function setup() {
     loadJSON(url, gotWeather);
 
 
-// ------------------------------------------------------ Function Click on Enter
+    // ------------------------------------------------------ Function Click on Enter
 
 
-    inputField.addEventListener("keyup", function (event) {
+    inputField.addEventListener("keyup", function(event) {
         // Cancel the default action, if needed
         event.preventDefault();
         // Number 13 is the "Enter" key on the keyboard
@@ -97,7 +100,7 @@ function setup() {
 
 function draw() {
     clear();
-   // text("Wie gsehts hüt so us?", 360, 60);
+    // text("Wie gsehts hüt so us?", 360, 60);
     background(0, 255, 0, 50);
 
     var x = (30);
@@ -118,7 +121,7 @@ function draw() {
     image(Olaf_default, x, y, 300, 647);
 
 
-// ------------------------------------------------------ Draw Current Temperature
+    // ------------------------------------------------------ Draw Current Temperature
 
 
     showTempC();
