@@ -3,7 +3,8 @@ let city = "";
 let temp;
 var input;
 let button;
-let key = '3762f14b22f9477084191958191101';
+//let access_key = 'b9cdd814609374fb27447bf32491db97';
+// let key = '3762f14b22f9477084191958191101'; old
 let condition = "";
 let wind_kph;
 let daynite;
@@ -56,12 +57,33 @@ function preload() {
 // ------------------------------------------------------ Setup
 
 
-function setup() {
+/*old api
+
+    function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0, 255, 0, 50);
 
 
     let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=Zürich&days=1';
+
+    input = createInput();
+    input.position(47, 560);
+    input.id('inputId');
+
+    let inputField = document.getElementById("inputId");
+
+    button = createButton('Ask Olaf!');
+    button.position(47, 620);
+    button.mousePressed(reloadJson);
+
+    loadJSON(url, gotWeather);*/
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    background(0, 255, 0, 50);
+
+    //let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=Zürich&days=1';
+    let url = 'http://api.openweathermap.org/data/2.5/forecast?q=Zürich,CH&APPID=b9cdd814609374fb27447bf32491db97';
 
     input = createInput();
     input.position(47, 560);
@@ -97,12 +119,11 @@ function setup() {
 
 function draw() {
     clear();
-   // text("Wie gsehts hüt so us?", 360, 60);
+    // text("Wie gsehts hüt so us?", 360, 60);
     background(0, 255, 0, 50);
 
     var x = (30);
     var y = (30);
-
 
 
     if (daynite == 1) {
@@ -147,9 +168,6 @@ function draw() {
         image(Temp_0, x, y, 300, 647);
 
     }
-
-
-
 
 
     // ------------------------------------------------------ Draw Current Condition
@@ -208,6 +226,7 @@ function showTempC() {
     text(temp + " °C", 150, 80);
 
 }
+
 /*
 function askOlaf() {
 
@@ -217,12 +236,12 @@ function askOlaf() {
 }*/
 
 
-
 // ------------------------------------------------------ Reload JSON
 
 function reloadJson() {
     let ort = input.value();
-    let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=' + ort + '&days=1';
+    let url = 'https://api.weatherstack.com/current?access_key=' + access_key + '&query=' + ort + '&days=1';
+    // OLD APIXU    let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=' + ort + '&days=1';
 
     loadJSON(url, gotWeather);
 }
@@ -230,8 +249,23 @@ function reloadJson() {
 // ------------------------------------------------------ gotWeather
 
 
+/* OLD APIXU
+
+    function gotWeather(weather) {
+    console.log(weather);
+    city = weather.location;
+    localtime = weather.location.localtime;
+    condition = weather.current.condition.text;
+    temp = weather.current.temp_c;
+    daynite = weather.current.is_day;
+    weatherdays = weather.forecast.forecastday;
+    rain = weather.forecast.forecastday;
+    wind_kph = weather.current.wind_kph;
+
+}*/
+
 function gotWeather(weather) {
-    //console.log(weather);
+    console.log(weather);
     city = weather.location.name;
     localtime = weather.location.localtime;
     condition = weather.current.condition.text;
