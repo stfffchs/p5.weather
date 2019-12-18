@@ -1,4 +1,4 @@
-// ------------------------------------------------------ Variablen
+// -------------------------------------------------------- Variablen
 let city = "";
 let temp;
 var input;
@@ -194,12 +194,12 @@ function draw() {
 
     // ------------------------------------------------------ Draw Current Wind
 
-    if wind_speed >= 20) {
-    image(Olaf_wind, x, y, 300, 647);
-    console.log("wind");
-}
+    if (wind_speed >= 20) {
+        image(Olaf_wind, x, y, 300, 647);
+        console.log("wind");
+    }
 
-textFont(myFont);
+    textFont(myFont);
 
 
 }
