@@ -3,8 +3,8 @@ let city = "";
 let temp;
 var input;
 let button;
-let key = '3762f14b22f9477084191958191101';
-//Neue API f5292699190e2f09abed2a814846ceb3
+// let key = '3762f14b22f9477084191958191101';
+let key = 'f5292699190e2f09abed2a814846ceb3';
 let condition = "";
 let wind_kph;
 let daynite;
@@ -62,8 +62,8 @@ function setup() {
     background(0, 255, 0, 50);
 
 
-    let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=Zürich&days=1';
-    //Neue API    let url = 'http://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb&query=NewYork';
+    // let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=Zürich&days=1';
+    let url = 'http://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb&query=Zurich';
 
 
     input = createInput();
@@ -225,7 +225,7 @@ function askOlaf() {
 
 function reloadJson() {
     let ort = input.value();
-    let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=' + ort + '&days=1';
+    let url = 'http://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb3&query=Zurich';
 
     loadJSON(url, gotWeather);
 }
@@ -234,14 +234,22 @@ function reloadJson() {
 
 
 function gotWeather(weather) {
-    //console.log(weather);
+    // console.log(weather);
     city = weather.location.name;
-    localtime = weather.location.localtime;
-    condition = weather.current.condition.text;
-    temp = weather.current.temp_c;
+    condition = weather.current.weather_descriptions;
+    temp = weather.current.temperature;
     daynite = weather.current.is_day;
-    weatherdays = weather.forecast.forecastday;
-    rain = weather.forecast.forecastday;
-    wind_kph = weather.current.wind_kph;
+    // rain = weather.forecast.forecastday;
+    wind_kph = weather.current.wind_speed;
+
+    // old --------------------------------------------- Apixu weather
+    // city = weather.location.name;
+    // localtime = weather.location.localtime;
+    // condition = weather.current.condition.text;
+    // temp = weather.current.temp_c;
+    // daynite = weather.current.is_day;
+    // weatherdays = weather.forecast.forecastday;
+    // rain = weather.forecast.forecastday;
+    // wind_kph = weather.current.wind_kph
 
 }
