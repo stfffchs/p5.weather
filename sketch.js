@@ -6,7 +6,7 @@ let button;
 // let key = '3762f14b22f9477084191958191101';
 let key = 'f5292699190e2f09abed2a814846ceb3';
 let condition = "";
-let wind_kph;
+let wind_speed;
 let daynite;
 
 var Olaf_default;
@@ -194,12 +194,12 @@ function draw() {
 
     // ------------------------------------------------------ Draw Current Wind
 
-    if (wind_kph >= 20) {
-        image(Olaf_wind, x, y, 300, 647);
-        console.log("wind");
-    }
+    if wind_speed >= 20) {
+    image(Olaf_wind, x, y, 300, 647);
+    console.log("wind");
+}
 
-    textFont(myFont);
+textFont(myFont);
 
 
 }
@@ -239,8 +239,8 @@ function gotWeather(weather) {
     condition = weather.current.weather_descriptions;
     temp = weather.current.temperature;
     daynite = weather.current.is_day;
-    // rain = weather.forecast.forecastday;
-    wind_kph = weather.current.wind_speed;
+    rain = weather.forecast.hourly.chanceofrain;
+    wind_speed = weather.current.wind_speed;
 
     // old --------------------------------------------- Apixu weather
     // city = weather.location.name;
@@ -250,6 +250,6 @@ function gotWeather(weather) {
     // daynite = weather.current.is_day;
     // weatherdays = weather.forecast.forecastday;
     // rain = weather.forecast.forecastday;
-    // wind_kph = weather.current.wind_kph
+    //wind_kmh = weather.current.wind_kmh
 
 }
