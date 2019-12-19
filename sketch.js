@@ -49,7 +49,9 @@ function preload() {
     Day = loadImage('images/Day.png');
     Nite = loadImage('images/Night.png');
 
+/*
     myFont = loadFont('images/Saira-Light.otf');
+*/
 
 
 }
@@ -63,7 +65,7 @@ function setup() {
 
 
     // let url = 'https://api.apixu.com/v1/forecast.json?key=' + key + '&q=Zürich&days=1';
-    let url = 'http://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb&query=Zurich';
+    let url = 'https://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb&query=Zurich';
 
 
     input = createInput();
@@ -225,7 +227,7 @@ function askOlaf() {
 
 function reloadJson() {
     let ort = input.value();
-    let url = 'http://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb3&query=Zurich';
+    let url = 'https://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb3&query=Zurich';
 
     loadJSON(url, gotWeather);
 }
