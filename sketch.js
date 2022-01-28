@@ -43,7 +43,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0, 255, 0, 50);
 
-    let url = 'https://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb&query=Zurich';
+    let url = 'https://api.weatherstack.com/current?access_key=f5292699190e2f09abed2a814846ceb3&query=Zurich';
     console.log('url ok');
 
     input = createInput();
