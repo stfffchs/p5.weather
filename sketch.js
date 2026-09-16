@@ -7,6 +7,7 @@ let access_key = 'f5292699190e2f09abed2a814846ceb3';
 let condition = "";
 let wind_speed;
 let daynite;
+let isLoading = false;
 
 var Olaf_default;
 var Olaf_sonnig;
@@ -60,6 +61,12 @@ function setup() {
     input = createInput();
     input.position(47, 560);
     input.id('inputId');
+    // load the typed city when the user presses Enter
+    input.elt.addEventListener('keyup', function (e) {
+        if (e.key === 'Enter') {
+            reloadJson();
+        }
+    });
 
     button = createButton('Ask Olaf!');
     button.position(47, 620);
@@ -160,12 +167,32 @@ function currentAccessory() {
 
 // ---------------------------------------------------------------- function reloadJson
 function reloadJson() {
+    if (isLoading) {
+        return;
+    }
     let ort = input.value();
     if (!ort) {
         return;
     }
     city = 'Lade ' + ort + ' ...';
+    setLoading(true);
     fetchWeather(ort);
+}
+
+// show/hide visual feedback on the button while a request is in flight
+function setLoading(loading) {
+    isLoading = loading;
+    if (loading) {
+        button.html('Lädt ...');
+        button.attribute('disabled', '');
+        button.style('background-color', '#7a7a7a');
+        button.style('cursor', 'wait');
+    } else {
+        button.html('Ask Olaf!');
+        button.removeAttribute('disabled');
+        button.style('background-color', 'darkgreen');
+        button.style('cursor', 'pointer');
+    }
 }
 
 // ---------------------------------------------------------------- helper to build the request url and fire it off
@@ -180,6 +207,10 @@ function gotWeather(weather) {
 
     if (!weather || weather.success === false || !weather.location || !weather.current) {
         console.error('weatherstack error', weather && weather.error);
+        city = 'Ort nicht gefunden';
+        temp = undefined;
+        condition = "";
+        setLoading(false);
         return;
     }
 
@@ -188,8 +219,11 @@ function gotWeather(weather) {
     condition = weather.current.weather_descriptions[0];
     wind_speed = weather.current.wind_speed;
     daynite = weather.current.is_day === 'yes' ? 1 : 0;
+    setLoading(false);
 }
 
 function gotWeatherError(err) {
     console.error('could not load weather', err);
+    city = 'Fehler beim Laden';
+    setLoading(false);
 }
