@@ -78,29 +78,66 @@ function draw() {
     var x = (30);
     var y = (30);
 
+    // 1) sky background
     if (daynite === 1) {
         image(Day, x, y, 300, 647);
     } else if (daynite === 0) {
         image(Nite, x, y, 300, 647);
     }
 
-    image(currentOlaf(), x, y, 300, 647);
+    // 2) Olaf himself, always visible
+    image(Olaf_default, x, y, 300, 647);
 
-    noStroke();
-    fill(255);
-    textSize(20);
+    // 3) clothes on top of Olaf, based on temperature
+    let clothing = currentClothing();
+    if (clothing) {
+        image(clothing, x, y, 300, 647);
+    }
+
+    // 4) weather accessory on top of everything (umbrella, sunglasses, scarf, snow...)
+    let accessory = currentAccessory();
+    if (accessory) {
+        image(accessory, x, y, 300, 647);
+    }
+
+    strokeWeight(3);
+    stroke(255);
+    fill(0);
+    textSize(24);
+    textStyle(BOLD);
     if (city) {
-        text(city, 40, 500);
+        text(city, 45, 65);
     }
     if (temp !== undefined) {
-        text(temp + ' °C', 40, 530);
+        text(temp + ' °C', 45, 95);
     }
+    noStroke();
 }
 
-// pick the Olaf image that matches the current weather condition
-function currentOlaf() {
+// pick Olaf's outfit based on the current temperature
+function currentClothing() {
+    if (temp === undefined) {
+        return null;
+    }
+    if (temp < 0) {
+        return Temp_0;
+    }
+    if (temp < 10) {
+        return Temp_0b;
+    }
+    if (temp < 18) {
+        return Temp_1;
+    }
+    if (temp < 25) {
+        return Temp_2;
+    }
+    return Temp_3;
+}
+
+// pick the weather accessory that matches the current condition
+function currentAccessory() {
     if (!condition) {
-        return Olaf_default;
+        return null;
     }
     let c = condition.toLowerCase();
     if (c.includes('rain') || c.includes('shower') || c.includes('drizzle') || c.includes('thunder')) {
@@ -118,7 +155,7 @@ function currentOlaf() {
     if (c.includes('cloud') || c.includes('overcast')) {
         return Olaf_partlycloudy;
     }
-    return Olaf_default;
+    return null;
 }
 
 // ---------------------------------------------------------------- function reloadJson
@@ -127,6 +164,7 @@ function reloadJson() {
     if (!ort) {
         return;
     }
+    city = 'Lade ' + ort + ' ...';
     fetchWeather(ort);
 }
 
